@@ -1,0 +1,1 @@
+Quantization is the process of reducing the numerical precision (number of bits) used to store the model's weights (and sometimes activations), making the model smaller, more memory-efficient, and usually faster during inference. It approximates high-precision numbers with lower-precision ones while trying to preserve almost the same accuracy.
