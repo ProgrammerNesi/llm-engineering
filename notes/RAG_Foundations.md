@@ -470,3 +470,54 @@ Final Response
 - Vector databases store chunk embeddings.
 - Cosine similarity finds the most semantically similar chunks.
 - RAG retrieves relevant chunks and provides them as context to the LLM before generation.
+
+
+# Encoders & Vector Stores
+
+**Encoders** convert text into **embedding vectors** that capture the semantic meaning of the text. Common examples include OpenAI text embedding models, Gemini embedding models, and open-source models such as `Hugging Face all-MiniLM-L6-v2`.
+
+**Vector stores** are used to **store, index, and retrieve embedding vectors** using similarity search. They can be dedicated vector stores such as Chroma, Qdrant, and FAISS, managed/scalable systems such as Pinecone and Weaviate, or even mainstream databases that support vector search, such as PostgreSQL, MongoDB, and Elasticsearch.
+
+## Popular Encoders
+
+- OpenAI text embedding
+- Gemini embedding
+- Hugging Face `all-MiniLM-L6-v2`
+
+## Popular Vector Stores
+
+### Open Source
+- Chroma
+- Qdrant
+- FAISS — in-memory
+
+### Paid & Scalable
+- Pinecone
+- Weaviate
+
+### Mainstream Databases
+- PostgreSQL
+- MongoDB
+- Elasticsearch
+
+## Basic Flow
+
+Text  
+↓  
+Encoder / Embedding Model  
+↓  
+Embedding Vector  
+↓  
+Vector Store  
+↓  
+Similarity Search  
+↓  
+Relevant Chunks
+
+## Key Distinction
+
+**Encoder:** Creates the embedding vector from text.
+
+**Vector Store:** Stores, indexes, and retrieves those vectors based on similarity.
+
+A mainstream database can also act as a vector store if it provides vector storage and similarity-search capabilities, such as PostgreSQL with `pgvector`.
