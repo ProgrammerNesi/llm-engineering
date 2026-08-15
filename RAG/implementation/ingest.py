@@ -2,10 +2,13 @@ import os
 import glob
 from pathlib import Path
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_text_splitters import MarkdownTextSplitter, RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_openai import OpenAIEmbeddings
+from langchain_google_genai import (
+    GoogleGenerativeAIEmbeddings
+)
 
 
 from dotenv import load_dotenv
@@ -15,8 +18,11 @@ MODEL = "gemini-3.1-flash-lite"
 DB_NAME = str(Path(__file__).parent.parent / "vector_db")
 KNOWLEDGE_BASE = str(Path(__file__).parent.parent / "knowledge-base")
 
-embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 load_dotenv(override=True)
+
+embeddings = HuggingFaceEmbeddings(
+    model_name="BAAI/bge-small-en-v1.5"
+)
 
 def fetch_documents():
     folders = glob.glob(str(Path(KNOWLEDGE_BASE) / "*"))
@@ -34,7 +40,8 @@ def fetch_documents():
 
 
 def create_chunks(documents):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=200)
+    #text_splitter = MarkdownTextSplitter()
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200)
     chunks = text_splitter.split_documents(documents)
     return chunks
 
