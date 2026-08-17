@@ -99,3 +99,14 @@ Measure Generated Answers
                              ┌────────┼────────┐
                              ↓        ↓        ↓
                           Accuracy Complete Relevance
+
+Conclusion:
+MRR = Average inverse rank of first hit; 1 if the first chunk always has relevant context
+
+nDCG = Did relevant chunks get ranked higher up
+
+Recall@K = Proportion of tests where relevant context was in the top K chunks
+
+Or if you have multiple keywords to look for, keyword coverage is similar recall metric
+
+Precision@K = Proportion of the top K chunks that are relevant
